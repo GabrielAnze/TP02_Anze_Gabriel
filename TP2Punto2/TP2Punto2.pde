@@ -10,7 +10,7 @@ abstract class GameObject {
 
 // Clase Dice que hereda de GameObject
 class Dice extends GameObject {
-    int value;
+    int dado;
 
     Dice() {
         roll(); // Inicializa el dado lanzándolo
@@ -18,7 +18,7 @@ class Dice extends GameObject {
 
     void roll() {
         // Genera un número aleatorio entre 1 y 6
-        value = (int) random(1, 7);
+        dado = (int) random(1, 7);
     }
 
     void display() {
@@ -33,7 +33,7 @@ class Dice extends GameObject {
 
         // Dibuja los puntos del dado según su valor
         fill(0); // Color negro para los puntos
-        int dotRadius = 15; // Radio de los puntos
+        int dotRadius = 25; // Radio de los puntos
         
         // Define las posiciones de los puntos dentro del dado
         int[][] dotPositions = {
@@ -47,7 +47,7 @@ class Dice extends GameObject {
         };
 
         // Dibuja los puntos basándose en el valor del dado
-        switch (value) {
+        switch (dado) {
             case 1:
                 ellipse(dotPositions[0][0], dotPositions[0][1], dotRadius, dotRadius);
                 break;
@@ -86,13 +86,13 @@ class Dice extends GameObject {
         // Muestra el valor numérico en la esquina superior derecha de la pantalla
         fill(0); // Color negro para el texto
         textSize(20);
-        text("Valor: " + value, width - 100, 30);
+        text("Valor: " + dado, width - 100, 30);
     }
 }
 
 // Configura el tamaño de la ventana
 void setup() {
-    size(400, 400);
+    size(600, 500);
     // Establece el color de fondo celeste
     background(135, 206, 250); // Color celeste
     // Inicializa el dado único
@@ -110,13 +110,13 @@ void keyPressed() {
     if (key == 'r') {
         // Lanza el dado único
         dice.roll();
-        results.add(dice.value); // Almacena el resultado
+        results.add(dice.dado); // Almacena el resultado
         
         // Limpia la ventana antes de mostrar el dado grande en el centro
         background(135, 206, 250); // Color de fondo celeste
         
         // Muestra el número lanzado y su valor
-        println("Rolled a " + dice.value);
+        println("Rolled a " + dice.dado);
         dice.display();
     }
 
